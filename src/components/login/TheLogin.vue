@@ -1,8 +1,6 @@
 <template>
 
-    <section class="flex flex-col p-8 h-screen justify-center gap-8">
-
-        <a href="/"><img class="absolute top-12 w-8" :src="voltar" alt=""></a>
+    <section class="flex flex-col p-8 h-screen items-center justify-center gap-8">
 
             <div class="flex flex-col gap-2">
                 <h1 class="font-bold text-3xl text-light-primary dark:text-white">Login</h1>
@@ -38,33 +36,25 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import voltar from '../../assets/images/voltar.svg';
+import { userStore } from '../../utils/Auth';
 
 const emailInput = ref('');
 const senhaInput = ref('');
 const dadosInvalidos = ref(false);
+const main = userStore();
+
+const emailToLowerCase = (email) => {
+    return email.toLowerCase();
+}
 
 const fazerCadastro = () => {
 
-    axios.post('http://localhost:3000/auth/login', {
-        email: emailInput.value,
-        password: senhaInput.value
-    }).then((response) => {
-        const token = response.data.access_token;
+    main.logIn(emailInput.value, senhaInput.value);
+    console.log(main.loggedIn)
 
-        if (token) {
-            localStorage.setItem('token', token);
-            console.log(token);
-            window.location.href = '/dashboard/gastos';
-            return
-        }
-
-        dadosInvalidos.value = true;
-        
-    }).catch((error) => {
-        dadosInvalidos.value = true;
-        console.log(error);
-    })
-
+    setInterval(() => {
+        console.log(main.loggedIn)  
+    }, 1000)
 }
 
 </script>

@@ -1,8 +1,7 @@
 <template>
 
-    <section class="flex flex-col p-8 h-screen justify-center gap-8">
+    <section class="flex flex-col p-8 h-screen items-center justify-center gap-8">
 
-        <a href="/"><img class="absolute top-12 w-8" :src="voltar" alt=""></a>
 
             <div class="flex flex-col gap-2">
                 <h1 class="font-bold text-3xl text-light-primary dark:text-white">Criar conta</h1>

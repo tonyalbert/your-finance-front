@@ -1,5 +1,5 @@
 <template>
-    <button class="absolute bottom-5 right-5">
+    <button class="fixed bottom-5 right-5">
         <img src="./../../assets/images/adicionar.svg" alt="">
     </button>
 </template>
